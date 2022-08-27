@@ -1,1 +1,1 @@
-# Data-Science-Blog
+# Essentialist-Learning-Log
