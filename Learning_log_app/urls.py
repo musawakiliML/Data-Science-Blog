@@ -1,6 +1,6 @@
 """Defines URL patterns for the Learning_log_app"""
 from django.urls import path
-from .views import index, homepage
+from .views import index, homepage, topics
 
 app_name = "Learning_log_app"
 urlpatterns = [
@@ -9,5 +9,7 @@ urlpatterns = [
 
     # App Home page
     path('index/', index, name='index'),
+    # Topics page
+    path('topics/', topics, name='topics'),
 
 ]

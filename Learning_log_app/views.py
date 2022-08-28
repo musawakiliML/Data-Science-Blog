@@ -18,6 +18,6 @@ def homepage(request):
 
 def topics(request):
     """Return Topics on the home page"""
-    topics = Topic.objects.all
+    topics = Topic.objects.order_by("date_added")  # Topic.objects.all
     context = {'topics': topics}
     return render(request, 'topics.html', context)
