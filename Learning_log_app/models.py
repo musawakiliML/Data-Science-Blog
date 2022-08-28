@@ -36,4 +36,4 @@ class Entry(models.Model):
 
     def __str__(self) -> str:
         """Return strig representation of the model as the first 50 characters."""
-        return f"{self.text[:50]}"
+        return f"{self.text[:50]}..."
