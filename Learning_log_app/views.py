@@ -66,3 +66,15 @@ def new_entry(request, topic_id):
 
     context = {'topic': topic, 'form': form}
     return render(request, 'new_entry.html', context)
+
+
+'''
+def edit_entry(request, entry_id):
+    """Edit An existing entry value."""
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+    
+    if request.method != "POST":
+        # Initial request; pre-fill form wth the current entry 
+        form = EntryForm(instance=entry)
+'''

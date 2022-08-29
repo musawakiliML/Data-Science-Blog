@@ -1,6 +1,6 @@
 """Defines URL patterns for the Learning_log_app"""
 from django.urls import path
-from .views import index, homepage, topics, topic, new_topic, new_entry
+from .views import index, homepage, topics, topic, new_topic, new_entry  # , edit_entry
 
 app_name = "Learning_log_app"
 urlpatterns = [
@@ -16,5 +16,7 @@ urlpatterns = [
     path('new_topic/', new_topic, name='new_topic'),
     # Adding a new entry
     path('new_entry/<int:topic_id>', new_entry, name='new_entry'),
+    # Editing Entry
+    #path('edit_entry/<int:entry_id>/',  edit_entry, name='edit_entry')
 
 ]
