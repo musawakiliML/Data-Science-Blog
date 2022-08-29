@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from .models import Topic, Entry
-from .forms import TopicForm
+from .forms import TopicForm, EntryForm
 
 # Create your views here.
 
@@ -47,3 +47,22 @@ def new_topic(request):
     # Display a blank or invalid form
     context = {'form': form}
     return render(request, 'new_topic.html', context)
+
+
+def new_entry(request, topic_id):
+    """Adding a new entry form"""
+    topic = Topic.objects.get(id=topic_id)
+    if request.method != 'POST':
+        # No data return empty form with a blank page
+        form = TopicForm()
+    else:
+        # POST request submitted, process data
+        form = EntryForm(data=request.POST)
+        if form.is_valid():
+            new_entry = form.save(commit=False)
+            new_entry.topic = topic
+            new_entry.save()
+            return redirect('Learning_log_app:topic', topic_id=topic_id)
+
+    context = {'topic': topic, 'form': form}
+    return render(request, 'new_entry.html', context)
