@@ -1,6 +1,7 @@
-from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
 from .models import Topic, Entry
+from .forms import TopicForm
 
 # Create your views here.
 
@@ -29,3 +30,20 @@ def topic(request, topic_id):
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
     return render(request, 'topic.html', context)
+
+
+def new_topic(request):
+    """Return new form to submit the topic to the data base"""
+    if request.method != 'POST':
+        # No data submitted, create a blank page.
+        form = TopicForm()
+    else:
+        # POST submitted, process data.
+        form = TopicForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('topics')
+
+    # Display a blank or invalid form
+    context = {'form': form}
+    return render(request, 'new_topic.html', context)
