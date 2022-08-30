@@ -11,7 +11,8 @@
         <a href="{% url 'Learning_log_app:index' %}">Learning Log App</a> - 
         <a href="{% url 'Learning_log_app:topics' %}">Topics</a>
         {% if user.is_authenticated %}
-            Hello, {{ user.username }}!!
+             - Hello, {{ user.username }}!!
+             <a href="{% url 'users:logout' %}">Log Out</a>
         {% else %}
         <a href="{% url 'users:login' %}">Log In</a>
         {% endif %}
