@@ -2,9 +2,13 @@
 
 from django.urls import path, include
 
+from views import register
+
 # name of the auth app
 app_name = 'users'
 urlpatterns = [
     # Include default auth urls.
     path('', include('django.contrib.auth.urls')),
+    # Registration page
+    path('register/', register, name='register'),
 ]

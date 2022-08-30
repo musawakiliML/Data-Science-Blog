@@ -12,7 +12,7 @@
         <a href="{% url 'Learning_log_app:topics' %}">Topics</a>
         {% if user.is_authenticated %}
              - Hello, {{ user.username }}!!
-             <a href="{% url 'users:logout' %}">Log Out</a>
+             <a href="{% url 'users:logout' %}"> - Log Out</a>
         {% else %}
         <a href="{% url 'users:login' %}">Log In</a>
         {% endif %}
