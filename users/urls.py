@@ -2,7 +2,7 @@
 
 from django.urls import path, include
 
-from views import register
+from .views import register
 
 # name of the auth app
 app_name = 'users'

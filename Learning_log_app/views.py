@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
@@ -17,6 +18,7 @@ def homepage(request):
     return render(request, 'base.html')
 
 
+@login_required
 def topics(request):
     """Return Topics on the home page"""
     topics = Topic.objects.order_by("date_added")  # Topic.objects.all
@@ -24,6 +26,7 @@ def topics(request):
     return render(request, 'topics.html', context)
 
 
+@login_required
 def topic(request, topic_id):
     """Return single topic details"""
     topic = Topic.objects.get(id=topic_id)
@@ -32,6 +35,7 @@ def topic(request, topic_id):
     return render(request, 'topic.html', context)
 
 
+@login_required
 def new_topic(request):
     """Return new form to submit the topic to the data base"""
     if request.method != 'POST':
@@ -49,6 +53,7 @@ def new_topic(request):
     return render(request, 'new_topic.html', context)
 
 
+@login_required
 def new_entry(request, topic_id):
     """Adding a new entry form"""
     topic = Topic.objects.get(id=topic_id)
@@ -68,6 +73,7 @@ def new_entry(request, topic_id):
     return render(request, 'new_entry.html', context)
 
 
+@login_required
 def edit_entry(request, entry_id):
     """Edit An existing entry value."""
     entry = Entry.objects.get(id=entry_id)
