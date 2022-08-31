@@ -50,7 +50,11 @@ def new_topic(request):
         # POST submitted, process data.
         form = TopicForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            # Saving user topic
+            new_topic = form.save(commit=False)
+            new_topic.owner = request.user
+            new_topic.save()
+            # form.save()
             return redirect('Learning_log_app:topics')
 
     # Display a blank or invalid form
@@ -83,6 +87,10 @@ def edit_entry(request, entry_id):
     """Edit An existing entry value."""
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
+
+    # Raise 404 error
+    if topic.owner != request.user:
+        return Http404
 
     if request.method != "POST":
         # Initial request; pre-fill form wth the current entry
