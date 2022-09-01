@@ -34,5 +34,5 @@ def logout(request):
     return redirect('users:logout')
 
 
-def profile(request, user_id):
-    pass
+# def profile(request, user_id):
+ #   return render(request, 'profile.html')
