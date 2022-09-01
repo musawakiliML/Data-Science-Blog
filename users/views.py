@@ -32,3 +32,7 @@ def register(request):
 def logout(request):
     logout(request)
     return redirect('users:logout')
+
+
+def profile(request, user_id):
+    pass
