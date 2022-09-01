@@ -1,17 +1,24 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block page_header %}
+
+<h3> New Entry </h3>
+
+{% endblock page_header %}
 
 {% block content %}
 
-<p><a href="{% url 'Learning_log_app:topic' topic.id %}">{{ topic }}</a></p>
+<h4>Topic: <a href="{% url 'Learning_log_app:topic' topic.id %}">{{ topic }}</a></h4>
+<br>
+<h5>Add New Entry</h5>
 
-<p>Add New Entry</p>
-
-<form action="{% url 'Learning_log_app:new_entry' topic.id %}" method="post" enctype='multipart/form-data'>
+<form action="{% url 'Learning_log_app:new_entry' topic.id %}" method="post" enctype='multipart/form-data' class="form">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% bootstrap_form form %}
 
-    <button name="submit">Add Entry</button>
-
+    {% buttons %}
+    <button name="submit" class="btn btn-primary">Add Entry</button>
+    {% endbuttons %}
 </form>
 
 {% endblock content %}
