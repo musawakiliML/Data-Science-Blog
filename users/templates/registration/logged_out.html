@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
 
 {% block content %}
     <p>You have been logged out. Thank you for visiting!</p>
+    <p>You can Log In <a href="{% url 'users:login' %}">Here</a></p>
 {% endblock content%}

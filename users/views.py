@@ -1,6 +1,6 @@
-from multiprocessing import context
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
@@ -24,3 +24,8 @@ def register(request):
     # Display blank or invalid form
     context = {'form': form}
     return render(request, 'registration/register.html', context)
+
+
+def logout(request):
+    logout(request)
+    return redirect('users:logout')
