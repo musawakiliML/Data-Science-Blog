@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h3>Add A New Topic</h3>
+{% endblock page_header %}
+
+<!--<p>Adding A New Topic: </p>-->
 {% block content %}
-<p>Adding A New Topic: </p>
-<form action="{% url 'Learning_log_app:new_topic' %}" method="POST" enctype='multipart/form-data'>
+
+<form action="{% url 'Learning_log_app:new_topic' %}" method="POST" enctype='multipart/form-data' class="form">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% bootstrap_form form %}
     
-    <button name="submit">Add Topic</button>
+    {% buttons %}
+    <button name="submit" class="btn btn-primary">Add Topic</button>
+    {% endbuttons %}
 
 </form>
 {% endblock content %}
